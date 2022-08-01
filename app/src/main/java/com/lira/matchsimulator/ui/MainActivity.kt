@@ -2,10 +2,8 @@ package com.lira.matchsimulator.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.lira.matchsimulator.R
@@ -26,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var matchesApi: MatchesAPI
 
-    private lateinit var adapter: MatchesAdapter
+    private var adapter: MatchesAdapter = MatchesAdapter(Collections.emptyList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +50,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupMatchesList(){
         binding.rvMatches.layoutManager = LinearLayoutManager(this@MainActivity)
         binding.rvMatches.setHasFixedSize(true)
+        binding.rvMatches.adapter = adapter
         findMatchesFromApi()
     }
 
